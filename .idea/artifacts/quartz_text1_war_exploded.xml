@@ -1,0 +1,23 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="quartz-text1:war exploded">
+    <output-path>$PROJECT_DIR$/quartztext1/target/quartz-text1</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="quartz-text1" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.quartz-scheduler:quartz:2.3.1" />
+          <element id="library" level="project" name="Maven: com.mchange:c3p0:0.9.5.3" />
+          <element id="library" level="project" name="Maven: com.mchange:mchange-commons-java:0.2.15" />
+          <element id="library" level="project" name="Maven: com.zaxxer:HikariCP-java7:2.4.13" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.7" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/quartztext1/target/quartz-text1/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="quartz-text1/web/Web" />
+    </root>
+  </artifact>
+</component>
