@@ -7,10 +7,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="quartz-text1" />
+        <module name="quartztext2" />
+        <module name="SpringQuartz" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="quartz-text1" target="1.7" />
+      <module name="quartztext2" target="1.7" />
+      <module name="SpringQuartz" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>

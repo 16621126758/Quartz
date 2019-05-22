@@ -1,16 +1,16 @@
-package cn.com.chysns;
+package cn.com.chnsys;
 
-import cn.com.chysns.job.HelloJob;
+import cn.com.chnsys.job.HelloJob;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import org.quartz.CronScheduleBuilder;
+import org.quartz.CronTrigger;
 import org.quartz.JobBuilder;
-import org.quartz.JobDataMap;
 import org.quartz.JobDetail;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.quartz.SchedulerFactory;
 import org.quartz.SimpleScheduleBuilder;
-import org.quartz.SimpleTrigger;
 import org.quartz.Trigger;
 import org.quartz.TriggerBuilder;
 import org.quartz.impl.StdSchedulerFactory;
@@ -29,25 +29,25 @@ public class HelloScheduler {
         //.usingJobDate  传递自定义参数 可以在jobDetail和Trigger中添加，在job中接收这些参数
         JobDetail jobDetail = JobBuilder.
                 newJob(HelloJob.class).
-                withIdentity("myJob","group1").usingJobData("message","hello myjob1").
-                usingJobData("FloatJobValue",3.14F).
+                withIdentity("myJob","group1").
                 build();
 
-        System.out.println("jobDetail's  name---"+jobDetail.getKey().getName());
-        System.out.println("jobDetail's  group---"+jobDetail.getKey().getGroup());
-        System.out.println("jobDetail's  group---"+jobDetail.getJobClass().getClass());
-
-        //创建要给Trigger实例。触发job取执行，怎么执行  本次定义job立即执，每隔两秒执行一次
-        Trigger trigger = TriggerBuilder.
+        //每秒钟触发一次任务
+        CronTrigger trigger =(CronTrigger) TriggerBuilder.
                 newTrigger().
                 withIdentity("myTrigger","groupq1").
-                usingJobData("message","hello myTrriger1").
-                usingJobData("DoubleTriggerValue",2.0D).
-                startNow().
                // withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(2).repeatForever()).
-                       //重复多少次   3次
-                withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(2).withRepeatCount(3)).
+                  //?代表没有用   *代表每的意思   每秒
+                withSchedule(CronScheduleBuilder.cronSchedule("0 20 16 * * ? 2019")).
                 build();
+
+        //2017年内每天十点十五分触发一次
+        //0 20 16 * * * 2019
+        //每天14点整至14点59分55秒，以及18点整至18点59分59秒   每五秒触发一次
+        //0/5 * 14,18 * * ?
+        //每月周一至周五的10点15分触发一次
+        //0 15 10 ? * 1-5
+
 
         //创建Scheduler实例  通过Factory创建
         SchedulerFactory schedulerFactory = new StdSchedulerFactory();

@@ -35,6 +35,8 @@ public class HelloJob implements Job {
         //打印当前的执行时间 格式为2017-01-01  00：00：00
         //编写具体的业务逻辑
 
+
+
         Date date = new Date();
         SimpleDateFormat sc = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String date1 = sc.format(date);
